@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mélangeur de vers' %}
+
+{% block body %}
+
+
+<div>
+    <h1> {{ pluralize(poets|length, 'poète') }}</h1>
+    
+    {# {{ dump(poets) }} #}
+    {% for poet in poets %}
+         <div {{ react_component('List', 
+            { 
+                'fullName': poet.fullName , 
+                'description': poet.description
+            }) 
+        }}></div>
+    {% endfor %}
+</div>
+{% endblock %}
