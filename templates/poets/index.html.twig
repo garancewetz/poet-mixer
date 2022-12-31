@@ -4,18 +4,30 @@
 
 {% block body %}
 
+<div class="relative h-screen overflow-hidden">
+    <section class="px-6 py-4">
+        <div class="w-[90%]">
+            <h1> Mélangeur de vers</h1>
+            <small>{{ pluralize(poets|length, 'poète') }}</small>
+            
+            {% for poet in poets %}
+                <div>
+                    <div {{ react_component('Switch')}}></div>
+                    <div {{ react_component('List', 
+                        { 
+                            'fullName': poet.fullName , 
+                            'description': poet.description,
+                            'link': path('app_poets_show', {id: poet.id}) 
+                        }) 
+                    }}></div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <div {{ react_component('Panel',  {
+        'content' : 'Mon contenu mis à jour ici'
+    }) }}></div>
 
-<div>
-    <h1> {{ pluralize(poets|length, 'poète') }}</h1>
-    
-    {# {{ dump(poets) }} #}
-    {% for poet in poets %}
-         <div {{ react_component('List', 
-            { 
-                'fullName': poet.fullName , 
-                'description': poet.description
-            }) 
-        }}></div>
-    {% endfor %}
 </div>
+
 {% endblock %}

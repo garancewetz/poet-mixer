@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title poet.fullName %}
+
+{% block body %}
+
+  <article>
+    <h1>{{poet.fullName}}</h1>
+    <p>{{poet.description}}</p>
+  </article>
+
+  <a href="{{ path('app_home') }}" class="underline text-blue-500">Retour</a>
+
+{% endblock %}

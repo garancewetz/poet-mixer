@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Poet;
 use App\Repository\PoetRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,5 +18,12 @@ class PoetsController extends AbstractController
         $poets = $poetRepository->findAll();
         // dump($poets);
         return $this->render('poets/index.html.twig', compact('poets'));
+    }
+    /**
+    * @Route("/poets/{id<[0-9]+>}", name="app_poets_show")
+    */
+    public function show(Poet $poet): Response
+    {
+        return $this->render('poets/show.html.twig', compact('poet'));
     }
 }
