@@ -43,6 +43,7 @@ SELECT * from poets ;
 
 # psysh
 sc psysh
+use App\Entity\Poet
 $em = $container->get('doctrine')->getManager();
 $poet1 = new Poet;
 $poet1->setFullName('Miguel Hernández');
