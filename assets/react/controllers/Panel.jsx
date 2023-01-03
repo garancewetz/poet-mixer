@@ -1,48 +1,54 @@
 import React from 'react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import Draggable from 'react-draggable';
 
 import Tools from './Tools';
 import Content from './Content';
 
-
 export default function Panel(props) {
-  let [isOpen, setIsOpen] = useState(false);
-  let [mousePos, setMousePos] = useState({});
+  const [position, setPosition] = useState(null);
+  const [isDragged, setIsDragged] = useState(false);
+  const [maxLeft, setMaxLeft] = useState(0)
 
-  let mousePosition = null;
-  let isPressed = false;
+  const handleClick = () => { 
+    if(isDragged) {
+        setIsDragged(false)
+    } else {
+        setPosition({x: 0, y:0})
+    }
+  }
+   useEffect(() => {
+    setMaxLeft(window.innerWidth-300)
+   }, [])
 
-  function handleClick() { setIsOpen(!isOpen);}
-  function handleDragStart(e) {
-    setMousePos({ x: e.clientX, y: e.clientY})
-    console.log('handleDragStart', e)
-  }
-  function handleDragOver(e) {
-    console.log('handleDragOver', e)
-  }
-  function handleDragEnd(e) {
-    console.log('handleDragEnd', e)
-  }
-  // function handleDrop(e) {
-  //   console.log('handleDrop', e)
-  // }
+  const trackPos = (data) => {
+    setPosition(null)
+    setIsDragged(true)
+    // console.log(data.x)
+  };
+
 
   return (
-    <div 
-      draggable={true}
-      className={`absolute inset-0 z-10 | bg-white shadow-md border-l border-gray-200 | transition duration-500 ${isOpen ? 'translate-x-[30%]' : 'translate-x-[90%]'}`}>
-      <div className="relative h-full | p-6">
-        <div 
-          draggable={true}
-          onClick={handleClick}
-          onDragStart={handleDragStart} 
-          onDragOver={handleDragOver} 
-          // onDrop={handleDrop}
-          onDragEnd={handleDragEnd}
-          class="absolute -left-[0.5rem] top-1/2 -translate-y-1/2 | w-4 h-16 bg-gray-300 rounded-full | cursor-pointer"></div>
-        <Tools />
-        <Content content={props.content}/>
+    <Draggable
+      axis="x"
+      handle="#handle"
+      onDrag={(e, data) => trackPos(data)}
+      bounds={{left: -maxLeft, top: 0, right: 0, bottom: 0}}
+      position={position}
+    >
+      <div        
+        style={{left: '90%'}}
+        className={`absolute w-full inset-0 z-10 | bg-white shadow-md border-l-4 border-gray-200`}>
+        <div className="relative h-full | p-6">
+          <div 
+            id="handle"
+            onClick={handleClick}
+            className="absolute -left-[10px] top-1/2 -translate-y-1/2 | w-4 h-16 bg-gray-300 rounded-lg | cursor-pointer"></div>
+          <Tools />
+          <Content content={props.content}/>
+        </div>
       </div>
-   </div>
+    </Draggable>
   )
 }

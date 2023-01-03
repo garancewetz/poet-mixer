@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title poet.fullName %}
+{% block title 'Ajouter un poète' %}
 
 {% block body %}
 
-  <article>
-    <h1>{{poet.fullName}}</h1>
-    <p>{{poet.description}}</p>
-  </article>
+  <h1>Ajouter un poète</h1>
+
+  <div>{{ form(myForm) }}</div>
 
   <div {{ react_component('Button', {'url': path('app_home'), 'text': 'Retour'})}}></div>
 
-{% endblock %}
+{% endblock body %}

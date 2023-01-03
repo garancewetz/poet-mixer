@@ -15,10 +15,26 @@ class PoetsController extends AbstractController
      */
     public function index(PoetRepository $poetRepository): Response
     {
-        $poets = $poetRepository->findAll();
+        $poets = $poetRepository->findBy([], ['fullName' => 'ASC']);
         // dump($poets);
         return $this->render('poets/index.html.twig', compact('poets'));
     }
+    /**
+     * @Route("/poets/create", name="app_poets_create")
+     */
+    public function create(): Response
+    {
+       $form = $this->createFormBuilder()
+            ->add('fullName')
+            ->add('description')
+            ->getForm();
+        ;
+        dd($form);
+        return $this->render('poets/create.html.twig',
+            ['myForm' => $form->createView()]
+        );
+    }
+
     /**
     * @Route("/poets/{id<[0-9]+>}", name="app_poets_show")
     */

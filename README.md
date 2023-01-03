@@ -48,7 +48,7 @@ $em = $container->get('doctrine')->getManager();
 $poet1 = new Poet;
 $poet1->setFullName('Miguel Hernández');
 $poet1->setDescription("Miguel Hernández Gilabert (30 octobre 1910 à Orihuela, province d'Alicante - 28 mars 1942 à Alicante) est un poète et dramaturge espagnol.") ;
-dump($poet1)
+dump($poet1)$poet
 $em->persist($poet1) ;
 $em->flush() ;
 dump($poet1) ;

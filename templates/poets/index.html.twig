@@ -5,14 +5,21 @@
 {% block body %}
 
 <div class="relative h-screen overflow-hidden">
-    <section class="px-6 py-4">
-        <div class="w-[90%]">
+    <section class="flex w-[90%]">
+        <div class="w-52 flex flex-col bg-gray-100 border-r border-grey-400 px-4 py-4 h-screen">
+            <a href="{{ path('app_poets_create') }}">+</a>
+
+            <div>
+                <div class="mb-10" {{ react_component('Select', {}) }}></div>
+                <div {{ react_component('Button', {'text': 'Mélanger', 'classes': 'bg-blue-400 text-white w-full'}) }}></div>
+            </div>
+        </div>
+        <div class="flex-1 px-6 py-4">
             <h1> Mélangeur de vers</h1>
             <small>{{ pluralize(poets|length, 'poète') }}</small>
             
             {% for poet in poets %}
                 <div>
-                    <div {{ react_component('Switch')}}></div>
                     <div {{ react_component('List', 
                         { 
                             'fullName': poet.fullName , 
