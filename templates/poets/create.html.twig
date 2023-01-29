@@ -3,11 +3,17 @@
 {% block title 'Ajouter un poète' %}
 
 {% block body %}
+  <section class="px-6 py-4">
+    <h1>Ajouter un poète</h1>
 
-  <h1>Ajouter un poète</h1>
+    <div>
+      {{ form_start(addPoetForm) }}
+        {{form_widget(addPoetForm)}}
+        <input type="submit" value="Create Poet" formnovalidate />
+      {{ form_end(addPoetForm) }}
+    
+    </div>
 
-  <div>{{ form(myForm) }}</div>
-
-  <div {{ react_component('Button', {'url': path('app_home'), 'text': 'Retour'})}}></div>
-
+    <div {{ react_component('Button', {'url': path('app_home'), 'text': 'Retour'})}}></div>
+  </section>
 {% endblock body %}

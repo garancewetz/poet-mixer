@@ -3,17 +3,7 @@
 {% block title %}Hello ReactController!{% endblock %}
 
 {% block body %}
+coucou
+    <div>react index</div>
 
-<div class="relative h-screen overflow-hidden">
-    <section class="p-6">
-        <div {{ react_component('List', { 'fullName': 'GaranceWetzel' , 'description': 'Voila la description de mon poète'}) }}></div>
-        <div {{ react_component('List', { 'fullName': 'Miguel' , 'description': 'Boucle foreach evidemment'}) }}></div>
-        <div {{ react_component('List', { 'fullName': 'AS' , 'description': 'Blablabla'}) }}></div>
-
-    </section>
-    <div class="absolute z-10 bg-white inset-0 shadow-md translate-x-[80%] border-l-2 border-gray-900 p-6">
-        <div {{ react_component('Tools', {}) }}></div>
-        <div {{ react_component('Content', {'content' : 'Mon contenu mis à jour ici'}) }}></div>
-    </div>
-</div>
 {% endblock %}

@@ -6,14 +6,15 @@
 
 # node version
 node 14
+- nvm use 14
 
 # run symfony web server
-symfony serve -d
-symfony open:local
+- symfony serve -d
+- symfony open:local
 
 # watch
-npm run watch
-npm run build
+- npm run watch
+- npm run build
 
 ## commands
 - symfony console make:controller nameController
@@ -34,7 +35,7 @@ npm run build
   - status (1, 2, 3, 4...)
 
   # DB
-run in terminal mysql -uroot -p to access DB
+run mysql -uroot -p / to access DB
 show databases ; 
 use $databaseName ;
 show tables ;

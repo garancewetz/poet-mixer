@@ -11,21 +11,14 @@ export default function Panel(props) {
   const [isDragged, setIsDragged] = useState(false);
   const [maxLeft, setMaxLeft] = useState(0)
 
-  const handleClick = () => { 
-    if(isDragged) {
-        setIsDragged(false)
-    } else {
-        setPosition({x: 0, y:0})
-    }
-  }
+  
    useEffect(() => {
-    setMaxLeft(window.innerWidth-300)
+    setMaxLeft(window.innerWidth-224)
    }, [])
 
   const trackPos = (data) => {
     setPosition(null)
     setIsDragged(true)
-    // console.log(data.x)
   };
 
 
@@ -43,7 +36,6 @@ export default function Panel(props) {
         <div className="relative h-full | p-6">
           <div 
             id="handle"
-            onClick={handleClick}
             className="absolute -left-[10px] top-1/2 -translate-y-1/2 | w-4 h-16 bg-gray-300 rounded-lg | cursor-pointer"></div>
           <Tools />
           <Content content={props.content}/>

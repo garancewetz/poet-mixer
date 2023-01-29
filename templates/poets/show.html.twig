@@ -4,11 +4,11 @@
 
 {% block body %}
 
-  <article>
+  <section class="px-6 py-4">
     <h1>{{poet.fullName}}</h1>
     <p>{{poet.description}}</p>
-  </article>
-
   <div {{ react_component('Button', {'url': path('app_home'), 'text': 'Retour'})}}></div>
+  </section>
+
 
 {% endblock %}
