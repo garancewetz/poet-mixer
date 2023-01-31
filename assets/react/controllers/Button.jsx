@@ -6,7 +6,7 @@ export default function Button(props) {
   return (
     <>
       <a href={props.url}>
-        <button className={`${props.classes} px-2 py-1 rounded-md`}>
+        <button className={`${props.classes} px-3.5 py-1 rounded-md `} type={props.type}>
           {props.text}
         </button>
       </a>

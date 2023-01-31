@@ -58,4 +58,29 @@ class PoetsController extends AbstractController
     {
         return $this->render('poets/show.html.twig', compact('poet'));
     }
+      /**
+    * @Route("/poets/{id<[0-9]+>}/edit", name="app_poets_edit", methods="GET|POST")
+    */
+    public function edit(Request $request, EntityManagerInterface $em, Poet $poet): Response
+    {
+        $form = $this->createFormBuilder($poet)
+            ->add('fullName', TextType::class)
+            ->add('description', TextareaType::class)
+            ->getForm();
+        ;
+
+        // get form's data
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+
+            return $this->redirectToRoute('app_home');
+        };
+
+        return $this->render('poets/edit.html.twig', [
+            'poet' => $poet,
+            'editPoetForm' => $form->createView(), 
+        ]);
+    }
 }

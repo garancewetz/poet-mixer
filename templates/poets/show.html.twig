@@ -7,7 +7,18 @@
   <section class="px-6 py-4">
     <h1>{{poet.fullName}}</h1>
     <p>{{poet.description}}</p>
-  <div {{ react_component('Button', {'url': path('app_home'), 'text': 'Retour'})}}></div>
+
+   <div class="inline-block" {{ react_component('Button', {
+      'url': path('app_poets_edit', {id: poet.id}),
+      'text': 'Edit', 
+      'classes': 'bg-orange-400 text-white w-full',
+      'type': 'submit'}) 
+    }}></div>
+  <div class="inline-block" {{ react_component('Button', {
+    'url': path('app_home'), 
+    'text': 'Retour',
+    'classes': 'bg-blue-400 text-white w-full',
+  })}}></div>
   </section>
 
 

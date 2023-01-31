@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Edit' ~ poet.fullName %}
+
+{% block body %}
+
+  <section class="px-6 py-4">
+    <h1>Edition {{poet.fullName}}</h1>
+     <div>
+      {{ form_start(editPoetForm) }}
+        {{form_widget(editPoetForm)}}
+        <div class="inline-block" 
+          {{ react_component('Button', {
+          'text': 'Edit poet', 
+          'classes': 'bg-orange-400 text-white w-full',
+          'type': 'submit'}) 
+        }}></div>
+      {{ form_end(editPoetForm) }}
+    
+    </div>
+
+  </section>
+
+
+{% endblock %}
