@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Poet;
 use App\Repository\PoetRepository;
+use App\Form\PoetType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,11 +30,7 @@ class PoetsController extends AbstractController
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $poet = new Poet;
-        $form = $this->createFormBuilder($poet)
-                ->add('fullName', TextType::class)
-                ->add('description', TextareaType::class)
-                ->getForm();
-            ;
+        $form = $this->createForm(PoetType::class, $poet);
 
         // get form's data
         $form->handleRequest($request);
@@ -63,11 +60,7 @@ class PoetsController extends AbstractController
     */
     public function edit(Request $request, EntityManagerInterface $em, Poet $poet): Response
     {
-        $form = $this->createFormBuilder($poet)
-            ->add('fullName', TextType::class)
-            ->add('description', TextareaType::class)
-            ->getForm();
-        ;
+        $form = $this->createForm(PoetType::class, $poet);
 
         // get form's data
         $form->handleRequest($request);
